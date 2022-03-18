@@ -167,27 +167,53 @@ app.delete("/:id_transaksi", (request, response) => {
 // endpoint untuk mengubah status transaksi
 app.post("/status/:id_transaksi", (request, response) => {
     // kita tampung nilai status
-    let data = {
-        status: request.body.status
-    }
- 
-    // kita tampung parameter
+    const dibayar = request.body.dibayar
     let parameter = {
         id_transaksi: request.params.id_transaksi
     }
- 
-    // proses update status transaksi
-    transaksi.update(data, {where: parameter})
-    .then(result => {
-        return response.json({
-            message: `Data status berhasil diubah`
-        })
-    })
-    .catch(error => {
-        return response.json({
-            message: error.message
-        })
-    })
+
+    // console.log("ameeeeeel"+dibayar)
+
+    if(dibayar === 0){
+        let data = {
+            status: request.body.status,
+            dibayar: request.body.dibayar,
+            // tgl_bayar: new Date().toISOString().split("T")[0]   
+        }
+        transaksi.update(data, {where: parameter})
+            .then(result => {
+                return response.json({
+                    message: `Data `,
+                    data: result
+                    
+                })
+            })
+            .catch(error => {
+                return response.json({
+                    message: error.message
+                })
+            })
+    }else{
+        let data1 = {
+            status: request.body.status,
+            dibayar: request.body.dibayar,
+            tgl_bayar: new Date().toISOString().split("T")[0]
+        }
+        transaksi.update(data1, {where: parameter})
+            .then(result => {
+                return response.json({
+                    message: `Data1 `,
+                    data: result
+                    
+                })
+            })
+            .catch(error => {
+                return response.json({
+                    message: error.message
+                })
+            })
+    }
+    
 })
  
 // endpoint untuk mengubah status pembayaran
