@@ -35,6 +35,7 @@ export default class Member extends React.Component{
                 */
                 if (localStorage.getItem("token")) {
                     this.state.token = localStorage.getItem("token")
+                    this.state.role = JSON.parse(localStorage.getItem("user")).role
                 } else {
                     window.location = "/login"
                 }
@@ -146,7 +147,7 @@ export default class Member extends React.Component{
         render(){
             return(
                 <div>
-                    <Navbar />
+                    <Navbar role={this.state.role}/>
                     <div className="container">
                         <h3 className="text-bold text-info mt-2">
                             Member List
