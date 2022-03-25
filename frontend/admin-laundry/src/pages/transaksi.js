@@ -1,16 +1,17 @@
 import React from "react"
 import Navbar from "../component/navbar"
+
 // import transaksiList
 import TransaksiList from "../component/transaksilist"
 
 // import base_url
 import { base_url } from "../config"
 
-//import jquery
+// import jquery
 import $ from "jquery"
 
 // import axios
-import axios from "axios" 
+import axios from "axios"
 
 export default class Transaksi extends React.Component{
     constructor(){
@@ -41,10 +42,11 @@ export default class Transaksi extends React.Component{
         */
            if (localStorage.getItem("token")) {
             this.state.token = localStorage.getItem("token")
+            this.state.role = JSON.parse(localStorage.getItem("user")).role
         } else {
             window.location = "/login"
-        }  
-}
+        }
+    }
 
     // header config -> untuk memberikan header berupa 'beare token' sebagai request API
     // sebelum mengakses data
@@ -60,7 +62,6 @@ export default class Transaksi extends React.Component{
         let url = base_url + "/transaksi"
         axios.get(url, this.headerConfig())
         .then(response => {
-
             this.setState({transaksi: response.data})
         })
         .catch(error => {
@@ -241,8 +242,8 @@ export default class Transaksi extends React.Component{
 
     render(){
         return(
-            <div> 
-                <Navbar />
+            <div>
+                <Navbar role={this.state.role}/>
                 <div className="container">
                     <h3 className="text-bold text-info mt-2">Transaksi List</h3>
                     { this.state.transaksi.map(item => (
@@ -277,20 +278,20 @@ export default class Transaksi extends React.Component{
                                 <form onSubmit={ev => this.saveStatus(ev, this.state.id_transaksi)}>
                                     Status Paket
                                     <div className="form-group">
-                                        <select name="status" id="status exampleFormControlSelect1" className="form-control"
+                                        <select name="status" id_status="status" className="form-control"
                                         onChange={ev => this.setState({status: ev.target.value})}
-                                        value={this.state.status}>
+                                        id="exampleFormControlSelect1" value={this.state.status}>
                                             <option>--- Pilih Status Paket ---</option>     
-                                            <option value="1">
+                                            <option value="baru">
                                                 Baru
                                             </option>
-                                            <option value="2">
+                                            <option value="proses">
                                                 Proses
                                             </option>
-                                            <option value="3">
+                                            <option value="selesai">
                                                 Selesai
                                             </option>
-                                            <option value="4">
+                                            <option value="diambil">
                                                 Diambil
                                             </option>
                                         </select>
@@ -298,14 +299,14 @@ export default class Transaksi extends React.Component{
 
                                     Status Bayar
                                     <div className="form-group">
-                                        <select name="bayar" id="bayar exampleFormControlSelect1" className="form-control"
+                                        <select name="bayar" id_bayar="bayar" className="form-control"
                                         onChange={ev => this.setState({dibayar: ev.target.value})}
-                                            value={this.state.dibayar}>
+                                        id="exampleFormControlSelect1" value={this.state.dibayar}>
                                             <option>--- Pilih Status Bayar ---</option>     
-                                            <option value="0">
+                                            <option value="belum_dibayar">
                                                 Belum Bayar
                                             </option>
-                                            <option value="1">
+                                            <option value="dibayar">
                                                 Sudah Bayar
                                             </option>
                                         </select>
@@ -355,20 +356,20 @@ export default class Transaksi extends React.Component{
 
                                         Status Paket
                                         <div className="form-group">
-                                            <select name="status" id="status exampleFormControlSelect1" className="form-control"
+                                            <select name="status" id_status="status" className="form-control"
                                             onChange={ev => this.setState({status: ev.target.value})}
-                                            value={this.state.status}>
+                                            id="exampleFormControlSelect1" value={this.state.status}>
                                                 <option>--- Pilih Status Paket ---</option>     
-                                                <option value="1">
+                                                <option value="baru">
                                                     Baru
                                                 </option>
-                                                <option value="2">
+                                                <option value="proses">
                                                     Proses
                                                 </option>
-                                                <option value="3">
+                                                <option value="selesai">
                                                     Selesai
                                                 </option>
-                                                <option value="4">
+                                                <option value="diambil">
                                                     Diambil
                                                 </option>
                                             </select>
@@ -376,14 +377,14 @@ export default class Transaksi extends React.Component{
 
                                         Status Bayar
                                         <div className="form-group">
-                                            <select name="bayar" id="bayar exampleFormControlSelect1" className="form-control"
+                                            <select name="bayar" id_bayar="bayar" className="form-control"
                                             onChange={ev => this.setState({dibayar: ev.target.value})}
-                                            value={this.state.dibayar}>
+                                            id="exampleFormControlSelect1" value={this.state.dibayar}>
                                                 <option>--- Pilih Status Bayar ---</option>     
-                                                <option value="0">
+                                                <option value="belum_dibayar">
                                                     Belum Bayar
                                                 </option>
-                                                <option value="1">
+                                                <option value="dibayar">
                                                     Sudah Bayar
                                                 </option>
                                             </select>
