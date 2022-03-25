@@ -26,6 +26,7 @@ export default class Paket extends React.Component{
         */
            if (localStorage.getItem("token")) {
             this.state.token = localStorage.getItem("token")
+            this.state.role = JSON.parse(localStorage.getItem("user")).role
         } else {
             window.location = "/login"
         }
@@ -38,11 +39,13 @@ export default class Paket extends React.Component{
         let header = {
             headers: { Authorization: `Bearer ${this.state.token}`}
         }
+        if( this.state.role !== "admin") this.props.history.push("/notfound")
         return header
     }
 
     // getPaket -> untuk mengakses API get paket
     getPaket = () => {
+        
         let url = base_url + "/paket"
         axios.get(url, this.headerConfig())
         .then(response => {
@@ -130,7 +133,7 @@ dropPaket = selectedItem => {
     render(){
         return(
             <div> 
-                <Navbar />
+                <Navbar role={this.state.role}/>
                 <div className="container">
                     <h3 className="text-bold text-info mt-2">
                         Paket List
