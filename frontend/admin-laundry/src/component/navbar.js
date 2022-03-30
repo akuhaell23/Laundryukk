@@ -12,7 +12,7 @@ class Navbar extends React.Component{
                 <a className="navbar-brand">
                     Clean and Fresh
                 </a>
-
+{/* p */}
                 {/* show and hide menu */}
                 <button className="navbar-toggler" data-toggle="collapse"
                 data-target="#menu">
