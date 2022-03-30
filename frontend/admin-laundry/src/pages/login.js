@@ -65,6 +65,8 @@ export default class Home extends React.Component{
                             onChange={ev=>this.setState({username:ev.target.value})} />
 
                                 {/*password*/}
+                                                                {/*password*/}
+
                             <input type="password" className="form-control mb-1" value={this.state.password}
                             onChange={ev=>this.setState({password: ev.target.value})} 
                             autoComplete="false" />
