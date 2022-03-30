@@ -18,9 +18,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
  
 // end-point akses data member dg method GET
-app.get("/coba",(req,res)=>{
-    res.send(200,"coba")
-})
 app.get("/", async(req, res) => {
     member.findAll()
     .then(result => {

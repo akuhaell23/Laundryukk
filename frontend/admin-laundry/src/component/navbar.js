@@ -10,7 +10,7 @@ class Navbar extends React.Component{
         return(
             <div className="navbar navbar-expand-lg bg-dark navbar-dark">
                 <a className="navbar-brand">
-                    Moklet Laundry
+                    Clean and Fresh
                 </a>
 
                 {/* show and hide menu */}
@@ -28,22 +28,26 @@ class Navbar extends React.Component{
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/product" className="nav-link">
+                            <Link to="/member" className="nav-link">
                                 Member
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="/customer" className="nav-link">
+                      {this.props.role !== "kasir"?(  <li className="nav-item">
+                            <Link to="/user" className="nav-link">
                                 User
                                 </Link>
                         </li>
+                        ):null}
+                        {this.props.role !== "kasir"?( 
+                             <li className="nav-item">
+                             <Link to="/paket" className="nav-link">
+                                 Paket
+                             </Link>
+                         </li>
+                        ):null}
+                       
                         <li className="nav-item">
-                            <Link to="/transaction" className="nav-link">
-                                Paket
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/admin" className="nav-link">
+                            <Link to="/transaksi" className="nav-link">
                                 Transaksi
                             </Link>
                         </li>

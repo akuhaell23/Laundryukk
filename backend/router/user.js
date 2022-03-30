@@ -113,7 +113,7 @@ app.delete("/:id_user", async(req, res) => {
     })
     .catch(error => {
         res.json({
-            message: error.message
+            message: "data user masih terdaftar pada data transaksi"
         })
     })
 })
